@@ -22,13 +22,12 @@ func validateChunk(chunk string) (int, error) {
 	sum := 0
 	
 	for i := 0; i < chunkSize-1; i++ {
-		// Convert chunk into integer value and subtract 64 from it?
+		// Convert chunk into integer value and subtract 64 from it.
 		sum += int(chunk[i]) - 64 // 'A' - 65 == 1
 		// Add to sum.
 	}
 
 	// Last character in the chunk should not be equal to sum mod 26.
-	// Could randomly generate a 5 character chunk and check if it has a valid checksum
 	if int(chunk[chunkSize-1])-64 != sum%26 {
 		return 0, fmt.Errorf("chunk checksum error")
 	}
